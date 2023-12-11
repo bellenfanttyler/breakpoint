@@ -40,7 +40,7 @@ breakpoint/
 To use this project, follow these steps:
 
 1. Prepare your dataset: Place your input images in data/input/. These images should represent the envirnoments you want to inpaint objects into.
-2. Set your prompts: Modify the prompts_classes_dict in src/dataset_generator.py with your desired prompts and corresponding object classes.
+2. Set your prompts: Create a prompts dictionary as shown in `notebooks\demo_notebook_tb_00.ipynb` with your desired prompts and corresponding object classes.
 3. Run the script: Execute dataset_generator.py to start generating the dataset.
 4. Check the results: The output images and YOLO formatted label text files will be saved in data/output/.
 
