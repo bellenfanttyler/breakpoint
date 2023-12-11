@@ -1,9 +1,11 @@
 import os
 import glob
+import numpy as np
 from PIL import Image
-from inpainting import apply_gaussian_blur_to_bboxes, create_image_mask
-from diffusers import StableDiffusionInpaintPipeline
+from .inpainting import apply_gaussian_blur_to_bboxes, create_image_mask
 import torch
+from diffusers import StableDiffusionInpaintPipeline
+
 
 def load_stable_diffusion_inpainting_pipeline():
     """
@@ -16,11 +18,14 @@ def load_stable_diffusion_inpainting_pipeline():
     Returns:
     - pipe: StableDiffusionInpaintPipeline object, the loaded inpainting pipeline
     """
+    device = "cuda"
+    model_path = "runwayml/stable-diffusion-inpainting"
+
     pipe = StableDiffusionInpaintPipeline.from_pretrained(
-        "runwayml/stable-diffusion-inpainting",
-        revision="fp16",
+        model_path,
         torch_dtype=torch.float16,
-    )
+    ).to(device)
+
     return pipe
 
 def generate_dataset(input_dir, output_dir, prompts_classes_dict, blur_strength=2.0, blur_size_percentage=0.05):
@@ -46,29 +51,34 @@ def generate_dataset(input_dir, output_dir, prompts_classes_dict, blur_strength=
     """
     # Load the inpainting pipeline
     pipe = load_stable_diffusion_inpainting_pipeline()
+    guidance_scale=7.5
+    num_samples = 3
+    generator = torch.Generator(device="cuda").manual_seed(1) # change the seed to get different results
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     image_files = glob.glob(input_dir + '/*.[pj][np][g]')  # jpg, png, jpeg
     for file_path in image_files:
-        base_image = Image.open(file_path)
+        base_image = Image.open(file_path).convert("RGB").resize((512, 512))
         base_image_np = np.array(base_image)
 
         for serial, (prompt, class_name) in enumerate(prompts_classes_dict.items(), start=1):
             # Generate mask and perform inpainting
             mask, bboxes = create_image_mask(base_image_np, num_masks=1)  # Adjust parameters as needed
-            mask_image = Image.fromarray(mask)
-            inpainted_image = pipe(prompt=prompt, image=base_image, mask_image=mask_image).images[0]
-
-            # Apply Gaussian blur
-            blurred_image_np = apply_gaussian_blur_to_bboxes(np.array(inpainted_image), bboxes, blur_strength, blur_size_percentage)
-            blurred_image = Image.fromarray(blurred_image_np)
+            mask_image = Image.fromarray(mask).convert("RGB").resize((512, 512))
+            inpainted_image = pipe(prompt=prompt, 
+                                   image=base_image,
+                                   mask_image=mask_image,
+                                   guidance_scale=guidance_scale,
+                                   generator=generator,
+                                   num_images_per_prompt=num_samples,
+                                   ).images[0]
 
             # Save the image
             base_filename = os.path.splitext(os.path.basename(file_path))[0]
             output_filename = f"{base_filename}_{class_name}_{format(serial, '04d')}.png"
-            blurred_image.save(os.path.join(output_dir, output_filename))
+            inpainted_image.save(os.path.join(output_dir, output_filename))
 
             # Save bounding box information
             bbox_filename = os.path.join(output_dir, f"{base_filename}_{class_name}_{format(serial, '04d')}.txt")

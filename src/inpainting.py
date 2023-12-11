@@ -60,7 +60,7 @@ def create_image_mask(base_image, min_mask_size=0.1, max_mask_size=0.9, aspect_r
 
 def apply_gaussian_blur_to_bboxes(base_image, bboxes, blur_strength=2.0, blur_size_percentage=0.05):
     """
-    Apply Gaussian blur around the edges of bounding boxes on the base image.
+    Apply Gaussian blur around the edges of bounding boxes on the inpainted image.
 
     Parameters:
     - base_image: numpy array, the base image
@@ -76,6 +76,9 @@ def apply_gaussian_blur_to_bboxes(base_image, bboxes, blur_strength=2.0, blur_si
     mask, bboxes = create_image_mask(base_image, num_masks=2)
     generated_image = = pipe(prompt=prompt, image=image, mask_image=mask).images[0]
     processed_image = apply_gaussian_blur_to_bboxes(generated_image, bboxes, blur_strength=2, blur_size_percentage=0.05)
+
+    TODO: Update this so it doesn't fill in the whole boudning box, just the edges. Also, catch error when
+    the bounding box is close, or at, the edge and it tries to apply blur outside of image.
     """
 
     h, w = base_image.shape[:2]
