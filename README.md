@@ -23,7 +23,7 @@ breakpoint/
 │
 ├── src/                      # Source code
 │   ├── dataset_generator.py  # Main dataset generation script
-│   ├── inpainting.py         # Inpainting and blur functions
+│   ├── inpainting.py         # Inpainting functions
 │   └── ...
 │
 ├── data/                     # Data directory (input/output)
