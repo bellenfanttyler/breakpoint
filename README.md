@@ -11,7 +11,7 @@ This project is designed to create a diverse image dataset using inpainting tech
 3. Automated creation of a labeled image dataset in YOLO format.
 
 ## Requirements
-To run this project, you will need Python 3.10.x along with several dependencies listed in requirements.txt. It is recommended to use a virtual environment. Perform the Pytorch installation according to the official installation instructions for the version number listed in the requirements file and for your system configuration (https://pytorch.org/get-started/locally/). Then, install the remaining requirements using:
+To run this project, you will need Python 3.10.x along with several dependencies listed in `requirements.txt`. It is recommended to use a virtual environment. Perform the Pytorch installation according to the official installation instructions for the version number listed in the requirements file and for your system configuration (https://pytorch.org/get-started/locally/). Then, install the remaining requirements using:
 
 ```bash
 pip install -r requirements.txt
@@ -23,8 +23,7 @@ breakpoint/
 │
 ├── src/                      # Source code
 │   ├── dataset_generator.py  # Main dataset generation script
-│   ├── inpainting.py         # Inpainting functions
-│   └── ...
+│   └── inpainting.py         # Inpainting functions
 │
 ├── data/                     # Data directory (input/output)
 │   ├── input/                # Input images
@@ -40,10 +39,10 @@ breakpoint/
 ### Usage
 To use this project, follow these steps:
 
-Prepare your dataset: Place your input images in data/input/.
-Set your prompts: Modify the prompts_classes_dict in src/dataset_generator.py with your desired prompts and corresponding classes.
-Run the script: Execute dataset_generator.py to start generating the dataset.
-Check the results: The output images and YOLO formatted label text files will be saved in data/output/.
+1. Prepare your dataset: Place your input images in data/input/. These images should represent the envirnoments you want to inpaint objects into.
+2. Set your prompts: Modify the prompts_classes_dict in src/dataset_generator.py with your desired prompts and corresponding object classes.
+3. Run the script: Execute dataset_generator.py to start generating the dataset.
+4. Check the results: The output images and YOLO formatted label text files will be saved in data/output/.
 
 ## Notebooks
 The notebooks/ directory contains Jupyter notebooks for demonstration and testing. These notebooks provide examples of how to use the functions in this project.
