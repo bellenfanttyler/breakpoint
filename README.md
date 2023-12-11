@@ -2,7 +2,7 @@
 ![breakpoint_logo](/static/logo.webp)
 
 ## Overview - Image Dataset Generation Project
-This project is designed to create a diverse image dataset using Generative AI inpainting techniques, leveraging the Stable Diffusion Inpainting Pipeline. It includes Python functions to programatically create randomized image masks and automate the process of creating an object detection image dataset (YOLO Format) from a collection of base images and text prompts.
+This project is designed to create a diverse image dataset using Generative AI inpainting techniques, leveraging the Stable Diffusion Inpainting Pipeline. It includes Python functions to programatically create randomized image masks (for identifying regions for inpainting) and automate the process of creating an object detection image dataset (YOLO Format) from a collection of base images and text prompts.
 ![example_outputs](/static/example_output.png)
 
 ## Features
