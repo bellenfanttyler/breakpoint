@@ -48,7 +48,8 @@ To use this project, follow these steps:
 The notebooks/ directory contains Jupyter notebooks for demonstration and testing. These notebooks provide examples of how to use the functions in this project.
 
 ## License
-The diffusion model weights are licensed under creativeml-openrail-m. The code is licensed under CC-BY-NC.
+The diffusion model weights are licensed under creativeml-openrail-m. 
+The code is licensed under CC-BY-NC.
 
 ## Contact
 For any queries or suggestions, please contact me here on Github.
