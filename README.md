@@ -36,7 +36,7 @@ breakpoint/
 └── README.md                 # Project overview (this file)
 ```
 
-### Usage
+## Usage
 To use this project, follow these steps:
 
 1. Prepare your dataset: Place your input images in data/input/. These images should represent the envirnoments you want to inpaint objects into.
