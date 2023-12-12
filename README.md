@@ -11,7 +11,7 @@ This project is designed to create a diverse image dataset using Generative AI i
 3. Automated creation of a labeled image dataset in YOLO format.
 
 ## Requirements
-To run this project, you will need Python 3.10.x along with several dependencies listed in `requirements.txt`. It is recommended to use a virtual environment. Perform the Pytorch installation according to the official installation instructions for the version number listed in the requirements file and for your system configuration (https://pytorch.org/get-started/locally/). Then, install the remaining requirements using:
+To run this project, you will need Python 3.10.x along with several dependencies listed in `requirements.txt`. It is recommended to use a virtual environment. Perform the Pytorch installation according to the official installation instructions for the version number listed in the requirements file and for your system configuration: (https://pytorch.org/get-started/locally/). Then, install the remaining requirements using:
 
 ```bash
 pip install -r requirements.txt
@@ -39,22 +39,23 @@ breakpoint/
 ## Usage
 To use this project, follow these steps:
 
-1. Prepare your dataset: Place your input images in `data/input`. These images should represent the environments you want to inpaint objects into.
+1. Prepare your dataset: Place your input images in `data/input`. These images should represent the environments/scenes you want to inpaint objects into.
 2. Set your prompts: Create a prompts dictionary as shown in `notebooks\demo_notebook_tb_00.ipynb` with your desired prompts and corresponding object classes.
-3. Run the script: Execute dataset_generator.py to start generating the dataset.
-4. Check the results: The output images and YOLO formatted label text files will be saved in data/output/.
+3. Run the script: Execute `dataset_generator.py` to start generating the dataset.
+4. Check the results: The output images and YOLO formatted label text files will be saved in `data/output`.
 
 ## Notebooks
-The notebooks/ directory contains Jupyter notebooks for demonstration and testing. These notebooks provide examples of how to use the functions in this project.
+The `notebooks` directory contains Jupyter notebooks for demonstration and testing. These notebooks provide examples of how to use the functions in this project. The `demo_notebook_tb_00.ipynb` has a full demo on how to generate an image dataset.
 
 ## License
-The diffusion model weights are licensed under creativeml-openrail-m. 
+The diffusion model weights are licensed under creativeml-openrail-m. \
 The code is licensed under CC-BY-NC.
 
 ## Contact
-For any queries or suggestions, please contact me here on Github.
+For any questions or suggestions, please contact me here on Github.
 
 ## Citation
+This repository leverages the `runwayml/stable-diffusion-inpainting` repository, models, and model weights.
 ```
     @InProceedings{Rombach_2022_CVPR,
         author    = {Rombach, Robin and Blattmann, Andreas and Lorenz, Dominik and Esser, Patrick and Ommer, Bj\"orn},
