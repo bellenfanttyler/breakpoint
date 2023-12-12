@@ -45,7 +45,7 @@ To use this project, follow these steps:
 4. Check the results: The output images and YOLO formatted label text files will be saved in `data/output`.
 
 ## Notebooks
-The `notebooks` directory contains Jupyter notebooks for demonstration and testing. These notebooks provide examples of how to use the functions in this project. The `demo_notebook_tb_00.ipynb` has a full demo on how to generate an image dataset.
+The `notebooks` directory contains Jupyter notebooks for demonstration and testing. These notebooks provide examples of how to use the functions in this project. The [`demo_notebook_tb_00.ipynb`](notebooks\demo_notebook_tb_00.ipynb) has a full demo on how to generate an image dataset.
 
 ## License
 The diffusion model weights are licensed under creativeml-openrail-m. \
